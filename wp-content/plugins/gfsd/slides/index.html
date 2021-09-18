@@ -1,0 +1,340 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="/wp-content/plugins/gfsd/slides/css/reveal.css">
+		<link rel="stylesheet" href="/wp-content/plugins/gfsd/slides/css/theme/solarized.css">
+		<link rel="stylesheet" href="/wp-content/plugins/gfsd/slides/lib/css/zenburn.css">
+		<style type="text/css"></style>
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1 style="display:inline-block;border-bottom:10px solid;">Gutenberg</h1>
+					<h2>for Site Developers</h2>
+					<small></small><p>(use <code>spacebar</code> or swipe to proceed)</p>
+				</section>
+				<section>
+					<h1>Hi!</h1>
+					<p class="fragment">&middot; Michael Dance</p>
+					<p class="fragment">&middot; Live in DC</p>
+					<p class="fragment">&middot; WordPress developer at CHIEF</p>
+				</section>
+				<section>
+					<h1>The Old</h1>
+				</section>
+				<section>
+					<img src="/wp-content/plugins/gfsd/slides/media/classic-editor.png" alt="Classic editor view">
+				</section>
+				<section>
+					<img src="/wp-content/plugins/gfsd/slides/media/classic-editor-fields.png" alt="View of edit screen with custom fields">
+				</section>
+				<section>
+					<h1>The New</h1>
+				</section>
+				<section>
+					<video src="/wp-content/plugins/gfsd/slides/media/gutenberg-demo.mov" preload controls></video>
+				</section>
+				<section>
+					<section>
+						<h1>The Problem</h1>
+					</section>
+					<section>
+						<h2>Clients need handholding</h2>
+						<img src="/wp-content/plugins/gfsd/slides/media/client-1.gif" height="75%" alt="Computer says Press Any Key, Homer Simpson wonders where the Any key is">
+					</section>
+					<section>
+						<h2>You want them to make this</h2>
+						<img src="/wp-content/plugins/gfsd/slides/media/client-2.png" height="75%" alt="Well-designed blog post">
+					</section>
+					<section>
+						<h2>But they end up making this</h2>
+						<img src="/wp-content/plugins/gfsd/slides/media/client-3.png" height="75%" alt="Ugly blog post with many bad design choices">
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>How to use Gutenberg sensibly?</h1>
+					</section>
+					<section>
+						<h2>What Gutenberg is Good for</h2>
+						<ul>
+							<li class="fragment">Unstructured content</li>
+							<li class="fragment">Long-form articles</li>
+							<li class="fragment">Media</li>
+						</ul>
+					</section>
+					<section>
+						<h2>What Gutenberg is Not Good for</h2>
+						<ul>
+							<li class="fragment">Heavily structured content</li>
+							<li class="fragment">Layout building</li>
+							<li class="fragment">Simplification</li>
+						</ul>
+					</section>
+					<section>
+						<h2>What Options Do We Have?</h2>
+						<ul>
+							<li class="fragment">Classic Editor plugin</li>
+							<li class="fragment">Custom fields (with Gutenberg or Classic)</li>
+							<li class="fragment">Removing Gutenberg on certain post types</li>
+						</ul>
+						<pre class="fragment"><code class="php">
+
+	remove_post_type_support( 'post', 'editor' );
+
+						</code></pre>
+						<pre class="fragment"><code class="php">
+
+	'supports' => array( 'title', 'editor' )
+
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>A Reasonable Plan</h2>
+					</section>
+					<section>
+						<h2>Part 1: Sites</h2>
+						<ul>
+							<li class="fragment">Maintenance sites: install Classic Editor</li>
+							<li class="fragment">New sites: try Gutenberg<br>
+								...but only use it on post types that make sense
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Part 2: Post Types</h2>
+						<ul>
+							<li>Posts:</li>
+							<li>Pages:</li>
+							<li>Custom post types:</li>
+						</ul>
+					</section>
+					<section>
+						<img src="/wp-content/plugins/gfsd/slides/media/wire-post.png" height="90%" alt="Wireframe of a basic post">
+					</section>
+					<section>
+						<h2>Part 2: Post Types</h2>
+						<ul>
+							<li>Posts: <span style="color:green;">use it</span>
+</li>
+							<li>Pages:</li>
+							<li>Custom post types:</li>
+						</ul>
+					</section>
+					<section>
+						<img src="/wp-content/plugins/gfsd/slides/media/wire-page.png" height="90%" alt="Wireframe of a basic landing page">
+					</section>
+					<section>
+						<h2>Part 2: Post Types</h2>
+						<ul>
+							<li>Posts: <span style="color:green;">use it</span>
+</li>
+							<li>Pages: <span style="color:#888800;">(maybe) use it</span>
+</li>
+							<li>Custom post types:</li>
+						</ul>
+					</section>
+					<section>
+						<img src="/wp-content/plugins/gfsd/slides/media/wire-cpt.png" height="90%" alt="Wireframe of an attorney bio page">
+					</section>
+					<section>
+						<h2>Part 2: Post Types</h2>
+						<ul>
+							<li>Posts: <span style="color:green;">use it</span>
+</li>
+							<li>Pages: <span style="color:#888800;">(maybe) use it</span>
+</li>
+							<li>Custom post types: <span style="color:red;">(probably) ditch it</span>
+</li>
+						</ul>
+					</section>
+					<!-- <section>
+						<h2>Further Considerations</h2>
+						<ul>
+							<li>Remember that Gutenberg is HTML</li>
+							<li>Custom fields</li>
+						</ul>
+					</section> -->
+				</section>
+				<section>
+					<section>
+						<h1>Making a Gutenberg-Ready Theme</h1>
+					</section>
+					<section>
+						<h2>Limit Color Options</h2>
+						<pre><code class="php">
+
+	// replace default colors
+	add_theme_support( 'editor-color-palette', array(
+		array(
+			'name' => 'Light Gray',
+			'slug' => 'light-gray',
+			'color' => '#dedede',
+		),
+	) );
+
+	// remove color picker
+	add_theme_support( 'disable-custom-colors' );
+
+						</code></pre>
+					</section>
+					<section>
+						<div style="display:flex;justify-content:center;">
+							<figure>
+								<div>Default</div>
+								<img src="/wp-content/plugins/gfsd/slides/media/colors-default.png" style="vertical-align:top;" alt="Default Gutenberg paragraph color options">
+							</figure>
+							<figure>
+								<div>Custom</div>
+								<img src="/wp-content/plugins/gfsd/slides/media/colors-custom.png" style="vertical-align:top;" alt="Custom paragraph color options">
+							</figure>
+						</div>
+					</section>
+					<section>
+						<h2>Limiting Font Size Options</h2>
+						<pre><code class="php">
+
+	add_theme_support( 'editor-font-sizes', array(
+		array(
+			'name' => 'Regular',
+			'slug' => 'regular',
+			'size' => 16,
+		),
+	) );
+
+						</code></pre>
+					</section>
+					<section>
+						<p><big><em>"Themes are responsible for creating the classes"</em></big></p>
+						<p><a target="_blank" href="https://gist.github.com/mikedance/ba2bb268570bd7cf22b258e88bb0af94">https://gist.github.com/mikedance/<br>ba2bb268570bd7cf22b258e88bb0af94</a></p>
+					</section>
+					<section>
+						<h3>Wide &amp; Full Alignments</h3>
+						<pre><code class="php">
+
+	add_theme_support( 'align-wide' );
+
+						</code></pre>
+					</section>
+					<section>
+						<h3>Editor CSS</h3>
+						<pre><code class="php">
+
+	add_editor_style(); // load
+	add_theme_support( 'editor-styles' ); // namespace
+
+						</code></pre>
+					</section>
+					<section>
+						<p>Recommended reading:</p>
+						<p><a href="https://wordpress.org/gutenberg/handbook/extensibility/theme-support/" target="_blank">https://wordpress.org/gutenberg/<br>handbook/extensibility/theme-support/</a></p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Block Templates</h1>
+					</section>
+					<section>
+						<pre><code class="php">
+
+	register_post_type( 'resource', array(
+		'label'         => 'Resources',
+		'public'        => true,
+		'supports'      => array( 'title', 'editor' ),
+		'show_in_rest'  => true,
+		'template'      => array( /* next slide */ ),
+		'template_lock' => 'all', // or 'insert'
+	) );
+
+						</code></pre>
+					</section>
+					<section>
+						<pre><code class="php" style="max-height:none;">
+
+	array( 'core/heading', array(
+		'content' => 'Description',
+	) ),
+	array( 'core/paragraph', array(
+		'placeholder' => 'Enter description...',
+	) ),
+	array( 'core/separator', array(
+		'className' => 'is-style-wide',
+	) ),
+	array( 'core/heading', array(
+		'level' => 3,
+		'content' => 'Download',
+	) ),
+	array( 'core/file', array() ),
+
+						</code></pre>
+					</section>
+					<section>
+						<img src="/wp-content/plugins/gfsd/slides/media/resource-template.png" alt="Gutenberg screen pre-loaded with blocks specified by the Resource template">
+					</section>
+					<section>
+						<h2>Considerations</h2>
+						<ul>
+							<li>You can only template what's available
+								<ul>
+									<li>No single-line text block</li>
+									<li>No locked HTML labels</li>
+								</ul>
+							</li>
+							<li>Nested blocks need work</li>
+							<li>Template functionality will expand</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Final Tips</h1>
+					</section>
+					<section>
+						For a project in flux,<br>
+						<strong>Source Code > Documentation</strong>
+					</section>
+					<section>
+						Learn how to create custom blocks
+					</section>
+					<section>
+						Expect things to take longer at first
+					</section>
+					<section>
+						<strong>We</strong> can drive Gutenberg's evolution
+					</section>
+				</section>
+				<section>
+					Questions?
+				</section>
+			</div>
+		</div>
+		<script src="/wp-content/plugins/gfsd/slides/lib/js/head.min.js"></script>
+		<script src="/wp-content/plugins/gfsd/slides/js/reveal.js"></script>
+		<script>
+			Reveal.initialize();
+
+			// click to proceed
+
+			window.addEventListener("mousedown", handleClick, false);
+			window.addEventListener("contextmenu", function(e) { e.preventDefault(); }, false);
+
+			function handleClick(e) {
+				if ( e.target.tagName === 'VIDEO' || e.target.tagName === 'A' ) {
+					return;
+				}
+				e.preventDefault();
+				if(e.button === 0) Reveal.next();
+				if(e.button === 2) Reveal.prev();
+			}
+		</script>
+	</body>
+</html>
