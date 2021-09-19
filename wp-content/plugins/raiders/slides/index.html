@@ -321,7 +321,7 @@
 				</section>
 				<section>
 					<pre class="html"><code data-trim>
-						<form method="get" action="/wp-content/plugins/raiders/slides/<?php echo esc_url( get_post_type_archive_link( 'book' ) ); ?>">
+						&lt;form method="get" action="/wp-content/plugins/raiders/slides/&lt;?php echo esc_url( get_post_type_archive_link( 'book' ) ); ?&gt;"&gt;
 							Filter by:
 							&lt;?php wp_dropdown_categories( array(
 								'taxonomy'        => 'genre',
@@ -331,7 +331,7 @@
 							) ); ?&gt;
 							<input type="text" name="book_keyword" placeholder="Keyword" value="&lt;?php echo esc_attr( $_GET['book_keyword'] ); ?&gt;">
 							<input type="submit" value="Go">
-						</form>
+						&lt;/form&gt;
 					</code></pre>
 
 				</section>
